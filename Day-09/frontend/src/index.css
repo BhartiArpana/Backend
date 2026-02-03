@@ -8,6 +8,7 @@ html,body,
   height: 100%;
   width: 100%;
   background: #000;
+  padding-top: 0.5rem;
 }
 
 .notes{
@@ -23,4 +24,29 @@ html,body,
   color: white;
   padding: 0.75rem;
   border-radius: 1rem;
+}
+.note button{
+  padding: 5px 10px;
+  border: none;
+  background-color: mediumorchid;
+  margin-top: 10px;
+  border-radius: 1rem;
+  color: white;
+  margin-left: 0.75rem;
+}
+form{
+  display: flex;
+  height: 2rem;
+  gap: 1rem;
+  padding-inline:1rem ;
+  
+}
+form input{
+  height: 2rem;
+}
+form button{
+  padding:10px;
+  background-color: royalblue;
+  border-radius: 1rem;
+  border: none;  
 }
