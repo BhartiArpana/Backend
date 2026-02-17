@@ -4,6 +4,8 @@ const postContoller = require('../controllers/post.controllers')
 const multer = require('multer')
 const upload = multer({storage:multer.memoryStorage()})
 
-postRouter.post('/',upload.single("image"),postContoller.createPostController)
+postRouter.post('/',upload.single("postImg"),postContoller.createPostController)
+postRouter.get('/',postContoller.getPostController)
+postRouter.get('/details/:postId',postContoller.getPostDetailsController)
 
 module.exports = postRouter

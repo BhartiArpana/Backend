@@ -58,9 +58,7 @@ async function loginControllers(req,res){
             message:"User not found "
         })
     }
-      hash = await bcrypt.compare(password,user.password)
-
-    const isPassword = hash===user.password
+      const isPassword = await bcrypt.compare(password,user.password)
     if(!isPassword){
         return res.status(409).json({
             message:"Inavlid password"
