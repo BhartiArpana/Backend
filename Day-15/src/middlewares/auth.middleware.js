@@ -17,7 +17,7 @@ async function identifyUser(req,res,next){
                 message:'Invalid token '
              })
          }
-         req.user = jwt.decode
+         req.user = decoded
          next()
 }
 module.exports = identifyUser

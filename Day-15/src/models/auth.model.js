@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const userSchema = new mongoose.Schema({
+const authSchema = new mongoose.Schema({
     username:{
         type:String,
         unique:[true,"User already exist."],
@@ -20,5 +20,5 @@ const userSchema = new mongoose.Schema({
     }
 })
 
-const userModel = mongoose.model('users',userSchema)
-module.exports = userModel
+const authModel = mongoose.model('users',authSchema)
+module.exports = authModel

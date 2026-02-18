@@ -1,10 +1,10 @@
-const userModel = require('../models/user.model')
+const authModel = require('../models/auth.model')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
 async function registerController(req,res){
     const {email,username,password,bio,profileImage}=req.body
-    const isUserAlredyExits = await userModel.findOne({
+    const isUserAlredyExits = await authModel.findOne({
         $or:[
             {username},
             {email}
@@ -19,7 +19,7 @@ async function registerController(req,res){
 
     const hash = await bcrypt.hash(password,10)
 
-    const user = await userModel.create({
+    const user = await authModel.create({
         username,
         email,
         password:hash,
@@ -27,7 +27,7 @@ async function registerController(req,res){
         profileImage
     })
    const token = jwt.sign({
-    id:user._id
+    id:user._id,username:user.username
    },process.env.JWT_SECRET,{expiresIn:'1d'})
 
    res.cookie('Token',token)
@@ -43,7 +43,7 @@ async function registerController(req,res){
 async function loginControllers(req,res){
     const {email,username,password}=req.body
 
-    const user = await userModel.findOne({
+    const user = await authModel.findOne({
         $or:[
             {
                 username:username
@@ -66,7 +66,7 @@ async function loginControllers(req,res){
     }
 
     const token = jwt.sign({
-        id:user._id
+        id:user._id,username:user.username
     },process.env.JWT_SECRET)
 
     res.cookie('Token',token)
