@@ -21,24 +21,35 @@ async function userFollowController(req,res){
             message:'User does not exist'
         })
     }
-
-    const isalredyfolloweing = await folloModel.findOne({
+ 
+    const isfolloweeStatus = await folloModel.findOne({
         followee:followeeUserName,
         follower:followerUserName
     })
-    if(isalredyfolloweing){
-        return res.status(200).json({
+    if(isfolloweeStatus){
+        if(isfolloweeStatus.status==='pending'){
+         return res.status(400).json({
+            message:`request already sent`
+         })
+        
+    }
+    if(isfolloweeStatus.status==='accepted'){
+        return res.status(400).json({
             message:`you already followed ${followeeUserName}`
         })
     }
+    }
+    
+    
      
      const followRecord = await folloModel.create({
         follower:followerUserName,
-        followee:followeeUserName
+        followee:followeeUserName,
+        
      })
 
      res.status(201).json({
-        message:`you are now following ${followeeUserName}`,
+        message:`follow request sent to ${followeeUserName}`,
         follow:followRecord
      })
 }
