@@ -24,7 +24,7 @@ async function registerController(req,res){
         email,
         password:hash,
         bio,
-        profileImage
+        profileImage:profileImage || undefined
     })
    const token = jwt.sign({
     id:user._id,username:user.username
@@ -52,7 +52,7 @@ async function loginControllers(req,res){
                 email:email
             }
         ]
-    })
+    }).select('+password')
     if(!user){
         return res.status(409).json({
             message:"User not found "
@@ -76,7 +76,18 @@ async function loginControllers(req,res){
 
 }
 
+async function getMeController(req,res){
+    const username = req.user.username
+    const user = await authModel.findOne({username})
+
+    res.status(200).json({
+       user
+    })
+}
+
+
 module.exports = {
     loginControllers,
-    registerController
+    registerController,
+    getMeController
 }

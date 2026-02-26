@@ -12,11 +12,13 @@ const authSchema = new mongoose.Schema({
     },
     password:{
         type:String,
-        required:[true,"password is required"]
+        required:[true,"password is required"],
+        select:false
     },
     bio:String,
     profileImage:{
-        type:String
+        type:String,
+        default:'https://ik.imagekit.io/fe1vmmkus/cohort_insta_clone/Test_AjrAhhfW4'
     }
 })
 

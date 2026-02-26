@@ -1,0 +1,41 @@
+main{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000;
+    color: whitesmoke;
+    .auth-container{
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+
+        form{
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+
+            input,button{
+                min-width: 20rem;
+                height: 2.3rem;
+                outline: none;
+                border: none;
+                border-radius: 1rem;
+                padding-block: 0.5rem;
+                padding-inline: 0.75rem;
+            }
+            button{
+                background-color: rgb(118, 4, 27);
+                color: white;
+            }
+        }
+        .link{
+            text-decoration: none;
+            color: rgb(118, 4, 27);
+        }
+        .link:hover{
+            color: blue;
+        }
+    }
+}
