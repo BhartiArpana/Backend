@@ -1,0 +1,16 @@
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    padding-block: 0.7rem;
+    align-items: center;
+
+    button{
+        width: 6rem;
+        height: 2rem;
+        background-color: rgb(178, 2, 58);
+        color: white;
+        border-radius: 10rem;
+        border: none;
+        cursor: pointer;
+    }
+}

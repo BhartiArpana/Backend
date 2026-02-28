@@ -4,7 +4,11 @@ import { BiComment } from "react-icons/bi";
 import { FaShare } from "react-icons/fa6";
 import { FaRegBookmark } from "react-icons/fa6";
 
-const Post = ({user,posts}) => {
+
+const Post = ({user,posts,loading,handleLike,handleUnLike}) => {
+
+  
+
   return (
     <div className="post">
       <div className="user">
@@ -23,7 +27,9 @@ const Post = ({user,posts}) => {
       <div className="icons">
         <div className="leftIcon">
           <button >
-            <FaRegHeart   className={`icon ${posts.isLike ? 'like' : ''}`} />
+            <FaRegHeart   className={`icon ${posts.isLike ? 'like' : ''}`} 
+            onClick={()=>posts.isLike?handleUnLike(posts._id):handleLike(posts._id)}
+            />
           </button>
           <button>
             <BiComment className="icon" />

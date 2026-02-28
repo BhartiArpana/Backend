@@ -1,6 +1,6 @@
 import { router } from "./App.routes"
 import { RouterProvider } from "react-router-dom"
-import './global.scss'
+import './shared/global.scss'
 import { AuthContext, AuthProvider } from "./features/Auth/auth.context"
 import { PostContextProvide } from "./features/posts/post.context"
 
