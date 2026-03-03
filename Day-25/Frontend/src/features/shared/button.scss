@@ -1,0 +1,17 @@
+.button{
+    height: 2rem;
+    width: 6rem;
+    border-radius: 0.5rem;
+    padding-block: 0.4rem;
+    padding-inline: 0.7rem;
+    background: #e05505;
+    color: white;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-weight: 600;
+    margin-top: 0.7rem;
+}
+.button:active{
+    scale: 0.98;
+}

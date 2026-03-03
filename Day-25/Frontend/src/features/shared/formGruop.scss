@@ -1,0 +1,18 @@
+.form-group{
+            display: flex;
+            gap: 0.7rem;
+            width: 100%;
+            position: relative;
+
+            input{
+                width: 80%;
+                height: 2rem;
+                border-radius: 0.5rem;
+                outline: none;
+                border: none;
+                padding-inline: 0.7rem;
+                position: absolute;
+                right: 0;
+              
+            }
+        }
