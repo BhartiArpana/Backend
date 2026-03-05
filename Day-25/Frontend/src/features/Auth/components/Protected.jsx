@@ -14,8 +14,6 @@ const Protected = ({children}) => {
         return navigate('/login')
         }
 
-   
-
   return (
     children
   )
