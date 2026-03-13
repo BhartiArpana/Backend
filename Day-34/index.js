@@ -4,6 +4,26 @@ import { ChatMistralAI } from "@langchain/mistralai"
 import {HumanMessage,tool,createAgent} from 'langchain'
 import { sendEmail } from './mail.service.js'
 import * as z from "zod"
+import { tavily } from "@tavily/core";
+
+
+const searchTavilyTool = async(input)=>{const tvly = tavily({ apiKey: process.env.TAVILY_API_KEY });
+const response = await tvly.search(input.query);
+return JSON.stringify(response.results)
+}
+
+const searchTool=tool(
+    searchTavilyTool,{
+        name:"searchTool",
+        description:"Search on the internet for the query",
+        schema:z.object({
+            query:z.string().describe("The search query to find information on the internet")
+        })
+    }
+)
+
+
+
 
 const sendEmailTool = tool(
     sendEmail,
@@ -29,8 +49,10 @@ const model = new ChatMistralAI({
 const message = []
 const agent = createAgent({
   model,
-  tools: [sendEmailTool]
+  tools: [sendEmailTool,searchTool]
 });
+
+
 
 while(true){
     const userInput = await rl.question("You : ")
