@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { userAuth } from '../hooks/userAuth'
-import { useNavigate } from 'react-router-dom'
+import { Navigate, useNavigate } from 'react-router-dom'
 
 const Protected = ({children}) => {
   
@@ -11,7 +11,7 @@ const Protected = ({children}) => {
         return <main><h1>Loading...</h1></main>
     }
         if(!user){
-        return navigate('/login')
+        return <Navigate to={'/login'} />
         }
 
   return (

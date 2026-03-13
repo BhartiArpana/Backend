@@ -32,7 +32,10 @@ export const userAuth = ()=>{
     }
 
     useEffect(()=>{
-        handleGetMe()
+         const token = localStorage.getItem("token")
+        if(!token){
+            handleGetMe()
+        }
     },[])
    
     return {loading,user,handleGetMe,handleLogin,handleLogout,handleRegister}
