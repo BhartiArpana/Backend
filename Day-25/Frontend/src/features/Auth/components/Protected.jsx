@@ -1,22 +1,21 @@
-import React, { useEffect } from 'react'
-import { userAuth } from '../hooks/userAuth'
-import { Navigate, useNavigate } from 'react-router-dom'
+import { Navigate } from "react-router-dom";
 
-const Protected = ({children}) => {
-  
-    const {user,loading} = userAuth()
-    const navigate = useNavigate()
+const Protected = ({ children }) => {
+  const token = localStorage.getItem("token");
+  const user = JSON.parse(localStorage.getItem("user"));
 
-    if(loading){
-        return <main><h1>Loading...</h1></main>
-    }
-        if(!user){
-        return <Navigate to={'/login'} />
-        }
+  // ❌ agar login nahi hai
+  if (!token) {
+    return <Navigate to="/login" />;
+  }
 
-  return (
-    children
-  )
-}
+  // ❌ agar agent nahi hai
+  if (user?.role !== "agent") {
+    return <Navigate to="/login" />;
+  }
 
-export default Protected
+  // ✅ sab sahi
+  return children;
+};
+
+export default Protected;
