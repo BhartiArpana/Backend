@@ -1,28 +1,27 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: express-deployment
+  name: express-deployment 
 spec:
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels:
-      app: express
+      app: main-server
   template:
     metadata:
       labels:
-        app: express
+        app: main-server
     spec:
       containers:
-      - name: express-container
-        image: cohort_2_express
+      - name: main-server
+        image: express_cohort_2
         imagePullPolicy: Always
-        ports: 
+        ports:
         - containerPort: 3000
-
         resources:
-          limits:
-            memory: "128Mi"
-            cpu: "500m"
           requests:
             memory: "64Mi"
             cpu: "250m"
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
