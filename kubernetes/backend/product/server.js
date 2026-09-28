@@ -9,9 +9,10 @@ app.use(morgan('dev'))
 
 app.get('/api/product',async(req,res)=>{
     const response = await axios.get('http://main-server-service/')
-    res.send(response.data)
+    res.send({ message: `Product server is working and ${response.data}` })
+    
 })
 
 app.listen(8080,()=>{
-    console.log('Product service is running on port 8080')
+    console.log('Product server is running on port 8080')
 })

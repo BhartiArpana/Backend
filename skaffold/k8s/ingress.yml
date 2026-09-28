@@ -1,0 +1,18 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: queue-ingress
+  labels:
+    app.kubernetes.io/name: queue-ingress
+spec:
+  ingressClassName: nginx
+  rules:
+     - http:
+        paths:
+          - pathType: Prefix
+            path: "/core"
+            backend:
+              service:
+                name: core-service
+                port:
+                  number: 80
