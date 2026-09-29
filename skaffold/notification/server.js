@@ -1,15 +1,16 @@
-import express from "express";
-import morgan from "morgan";
+import express from 'express'
+import morgan from 'morgan'
+import axios from 'axios'
 
-const app = express();
+const app = express()
+app.use(express.json())
+app.use(morgan('dev'))
 
-app.use
-app.use(morgan("dev"));
+app.get('/',async(req,res)=>{
+    let response = await axios.get('http://core-service')
+    res.status(200).json(response.data)
+})
 
-app.get("/", (req, res) => {
-  res.send("Notification service is running");
-});     
-
-app.listen(8080, () => {
-  console.log("Notification service is running on port 8080");
+app.listen(5000,()=>{
+    console.log(`server running at port 5000`)
 })
