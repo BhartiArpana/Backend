@@ -1,0 +1,23 @@
+apiVersion: skaffold/v4beta13
+kind: Config
+metadata:
+  name: sandbox
+
+build:
+  local:
+    push: false
+  artifacts:
+    - image: sandbox
+      context: sandbox
+    - image: template
+      context: template
+    - image: sandbox-agent
+      context: sandbox-agents/comm-agent
+    - image: sandbox-sync
+      context: sandbox-agents/sync-agent
+
+manifests:
+  rawYaml:
+    - k8s/sandbox-deployment.yml
+    - k8s/sandbox-service.yml
+    - k8s/ingress.yml
